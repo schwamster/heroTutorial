@@ -10,7 +10,7 @@ See also: https://wikiinline.scania.com/wiki/How_to_set_up_a_Angular2_project_fr
 - Install npm => https://nodejs.org/en/download/ 
 To check if you have installed npm on your computer, run npm -v in the command line
 
-# Proxy setup
+# Proxy setup if you sit behind a proxy
 Run the following two commands in Powershell:
 
     setx https_proxy http://<ask for proxy>
