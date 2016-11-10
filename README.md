@@ -45,9 +45,11 @@ to be "served" first and this takes to long for the debugger (timeout). Just pre
 
 ### 2.2 This should start Chrome and you should end up hitting a breakpoint, which is an uncaught exception - untick Uncaught Exceptions in the Breakpoints list in the Debug Window.
 
+### 2.3 Verify that the application is up and running by navigation to http://localhost
 
-# 3 Testing
+# Optional
 
+## Testing
 to run unittests open powershell in the projects root folder and run:
 
     ng test
@@ -56,7 +58,7 @@ to run End-2-End test open powershell in the projects root folder and run:   (Fo
     
     ng e2e
 
-# Optional
+## More Plugins
 - Typescript/Html Angular Snippets: https://marketplace.visualstudio.com/items?itemName=danwahlin.angular2-snippets
 - Autoclose html tag: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
 - Typescript Toolbox: https://marketplace.visualstudio.com/items?itemName=DSKWRK.vscode-generate-getter-setter
