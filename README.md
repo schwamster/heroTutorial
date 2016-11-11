@@ -16,6 +16,8 @@ Run the following two commands in Powershell:
     setx https_proxy http://<ask for proxy>
 
     setx http_proxy http://<ask for proxy>
+    
+    !Important: For this changes to take effect you will have to restart your powershell window
 
 # 1. setup:
 ### 1.1 npm install -g webpack angular-cli tslint typescript
