@@ -14,7 +14,6 @@ To check if you have installed npm on your computer, run npm -v in the command l
 Run the following two commands in Powershell:
 
     setx https_proxy http://<ask for proxy>
-
     setx http_proxy http://<ask for proxy>
 
 # 1. setup:
