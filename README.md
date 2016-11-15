@@ -7,8 +7,13 @@ See also: https://wikiinline.scania.com/wiki/How_to_set_up_a_Angular2_project_fr
 
 # Prequesites:
 
-- Install npm => https://nodejs.org/en/download/ 
-To check if you have installed npm on your computer, run npm -v in the command line
+- Install node & npm => https://nodejs.org/en/download/ 
+To check if you have installed npm on your computer, run the following in powershell:
+
+    npm -v
+    node -v
+
+! Make sure you have at least Version 3 ov npm and at least version 4 of Node
 
 # Proxy setup if you sit behind a proxy
 Run the following two commands in Powershell:
