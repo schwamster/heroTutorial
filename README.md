@@ -71,7 +71,7 @@ to be "served" first and this takes to long for the debugger (timeout). Just pre
 
 ### 2.2 This should start Chrome and you should end up hitting a breakpoint, which is an uncaught exception - untick Uncaught Exceptions in the Breakpoints list in the Debug Window.
 
-### 2.3 Verify that the application is up and running by navigation to http://localhost
+### 2.3 Verify that the application is up and running by navigation to http://localhost:4200
 
 # Optional
 
