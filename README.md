@@ -20,7 +20,6 @@ To check if you have installed npm on your computer, run the following in powers
 Run the following two commands in Powershell:
 
     setx https_proxy http://<ask for proxy>
-
     setx http_proxy http://<ask for proxy>
     
 ! Important: For this changes to take effect you will have to restart your powershell window and Visual Studio Code if you already have installed it
