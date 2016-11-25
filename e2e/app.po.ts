@@ -17,12 +17,39 @@ export class HeroTutorialPage {
     return element(by.css('my-app h1')).getText();
   }
 
+  printHeadingH2InMyApp() {
+    console.log('Heading h2 in my-app: ');
+    this.getHeadingH2InMyApp().then(result => console.log(result));
+  }
+  getHeadingH2InMyApp() {
+    return element(by.css('my-app h2')).getText();
+  }
+
   printHeadingH3InMyApp() {
-    console.log('Heading h3 in my-app: ');
-    this.getHeadingH3InMyApp().then(result => console.log(result));
+    this.getHeadingH3InMyApp().then(result => console.log(`Heading h3 in my-app: ${result}`));
   }
   getHeadingH3InMyApp() {
     return element(by.css('my-app h3')).getText();
+  }
+
+  printHeadingH2InMyHeroes() {
+    console.log('Heading h2 in my-heroes: ');
+    this.getHeadingH2InMyHeroes().then(result => console.log(result));
+  }
+  getHeadingH2InMyHeroes() {
+    return element(by.css('my-heroes h2')).getText();
+  }
+
+  clickButtonDashboard() {
+    return element(by.linkText('Dashboard')).click();
+  }
+
+  clickButtonHeroes() {
+    return element(by.linkText('Heroes')).click();
+  }
+
+  clickHeroBombastoInDashboard() {
+    return element(by.xpath('//a[2]/div/h4')).click();
   }
 
   printHeadingH2InMyHeroDetail() {

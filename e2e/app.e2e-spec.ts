@@ -24,6 +24,31 @@ describe('hero-tutorial App', function () {
     expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
   });
 
+  it('Click hero "Bombasto" and verify hero details', () => {
+    page.navigateTo();
+    page.clickHeroBombastoInDashboard();
+    page.printHeadingH2InMyApp();
+    expect(page.getHeadingH2InMyApp()).toEqual('Bombasto details!');
+  });
+
+  it('Naviagate between "Dashboard" and "Heroes"', () => {
+    page.navigateTo();
+    page.printHeadingH3InMyApp();
+    expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
+
+    page.clickButtonHeroes();
+    page.printHeadingH2InMyHeroes();
+    expect(page.getHeadingH2InMyHeroes()).toEqual('My Heroes');
+
+    page.clickButtonDashboard();
+    page.printHeadingH3InMyApp();
+    expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
+
+    page.clickButtonHeroes();
+    page.printHeadingH2InMyHeroes();
+    expect(page.getHeadingH2InMyHeroes()).toEqual('My Heroes');
+  });
+
   // it('Verify change of hero name', () => {
   //   page.navigateTo();
   //   page.printOneHeroInList();
