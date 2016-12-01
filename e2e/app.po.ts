@@ -10,31 +10,24 @@ export class HeroTutorialPage {
   }
 
   printHeadingH1InMyApp() {
-    console.log('Heading h1 in my-app: ');
-    this.getHeadingH1InMyApp().then(result => console.log(result));
+    this.getHeadingH1InMyApp().then(result => console.log(`Heading h1 in my-app (/dashboard): ${result}`));
   }
   getHeadingH1InMyApp() {
     return element(by.css('my-app h1')).getText();
   }
 
-  printHeadingH2InMyApp() {
-    console.log('Heading h2 in my-app: ');
-    this.getHeadingH2InMyApp().then(result => console.log(result));
+  printHeadingH3InMyDashboard() {
+    this.getHeadingH3InMyDashboard().then(result => console.log(`Heading h3 in my-dashboard (/dashboard): ${result}`));
   }
-  getHeadingH2InMyApp() {
-    return element(by.css('my-app h2')).getText();
-  }
-
-  printHeadingH3InMyApp() {
-    this.getHeadingH3InMyApp().then(result => console.log(`Heading h3 in my-app: ${result}`));
-  }
-  getHeadingH3InMyApp() {
+  getHeadingH3InMyDashboard() {
     return element(by.css('my-app h3')).getText();
   }
 
   printHeadingH2InMyHeroes() {
-    console.log('Heading h2 in my-heroes: ');
-    this.getHeadingH2InMyHeroes().then(result => console.log(result));
+    return this.getHeadingH2InMyHeroes().then(result => {
+      console.log(`Heading h2 in my-heroes (/heros): ${result}`);
+      return result;
+    });
   }
   getHeadingH2InMyHeroes() {
     return element(by.css('my-heroes h2')).getText();
@@ -48,17 +41,35 @@ export class HeroTutorialPage {
     return element(by.linkText('Heroes')).click();
   }
 
-  clickHeroBombastoInDashboard() {
+  printHeroNameForSecondHeroInDashboard() {
+    this.getHeroNameForSecondHeroInDashboard()
+      .then(result => console.log(`Hero name for second hero in dashboard: ${result}`));
+  }
+  getHeroNameForSecondHeroInDashboard() {
+    return element(by.xpath('//a[2]/div/h4')).getText();
+  }
+
+  clickSecondHeroInDashboard() {
     return element(by.xpath('//a[2]/div/h4')).click();
   }
 
   printHeadingH2InMyHeroDetail() {
-    console.log('Heading h2 in my-hero-detail: ');
-    this.getHeadingH2InMyHeroDetail().then(result => console.log(result));
+    this.getHeadingH2InMyHeroDetail().then(result => console.log(`Heading h2 in my-hero-detail (/detail/x): ${result}`));
   }
   getHeadingH2InMyHeroDetail() {
     return element(by.css('my-hero-detail h2')).getText();
   }
+
+  enterHeroName() {
+    let idStr = by.xpath('//input');
+    element(idStr).clear();
+    element(idStr).sendKeys('Kalle');    
+  }
+
+  clickButtonSaveOfHeroDetails() {
+    element(by.xpath('//button[2]')).click();
+  }
+
   // getListOfHeroes() {
   //   return [];
   // }

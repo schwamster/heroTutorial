@@ -20,41 +20,76 @@ describe('hero-tutorial App', function () {
 
   it('Verify heading "Top Heroes" of type h3 in page "Dashboard"', () => {
     page.navigateTo();
-    page.printHeadingH3InMyApp();
-    expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
+    page.printHeadingH3InMyDashboard();
+    expect(page.getHeadingH3InMyDashboard()).toEqual('Top Heroes');
   });
 
-  it('Click hero "Bombasto" and verify hero details', () => {
+  it('Click second hero and verify hero details heading', () => {
     page.navigateTo();
-    page.clickHeroBombastoInDashboard();
-    page.printHeadingH2InMyApp();
-    expect(page.getHeadingH2InMyApp()).toEqual('Bombasto details!');
+    page.getHeroNameForSecondHeroInDashboard().then(heroName => {
+      console.log("Heroname: " + heroName);
+      page.clickSecondHeroInDashboard().then(() => {
+        page.printHeadingH2InMyHeroDetail();
+        expect(page.getHeadingH2InMyHeroDetail()).toEqual(heroName + ' details!');
+      });
+    });
   });
 
   it('Naviagate between "Dashboard" and "Heroes"', () => {
     page.navigateTo();
-    page.printHeadingH3InMyApp();
-    expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
-
-    page.clickButtonHeroes();
-    page.printHeadingH2InMyHeroes();
-    expect(page.getHeadingH2InMyHeroes()).toEqual('My Heroes');
-
-    page.clickButtonDashboard();
-    page.printHeadingH3InMyApp();
-    expect(page.getHeadingH3InMyApp()).toEqual('Top Heroes');
-
-    page.clickButtonHeroes();
-    page.printHeadingH2InMyHeroes();
-    expect(page.getHeadingH2InMyHeroes()).toEqual('My Heroes');
+    page.printHeadingH3InMyDashboard();
+    expect(page.getHeadingH3InMyDashboard()).toEqual('Top Heroes');
+    page.clickButtonHeroes()
+      .then(() => {
+        page.getHeadingH2InMyHeroes().then(heading => {
+          console.log(`Heading h2 in my-heroes (/heros): ${heading}`);
+          expect(heading).toEqual('My Heroes');
+        })
+      })
+      .then(() => {
+        page.clickButtonDashboard().then(() => {
+          page.getHeadingH3InMyDashboard().then(heading => {
+            console.log(`Heading h3 in my-app (/dashboard): ${heading}`);
+            expect(heading).toEqual('Top Heroes');
+          })
+        })
+      })
+      .then(() => {
+        page.clickButtonHeroes().then(() => {
+          page.getHeadingH2InMyHeroes().then(heading => {
+            console.log(`Heading h2 in my-heroes (/heros): ${heading}`);
+            expect(heading).toEqual('My Heroes');
+          });
+        });
+      });
   });
 
-  // it('Verify change of hero name', () => {
-  //   page.navigateTo();
-  //   page.printOneHeroInList();
-  //   setTimeout(() => { this.router.navigate(['/']); }, 5000);
-  //   page.clickHeroInList();
-  //   page.printHeadingH2InMyHeroDetail();
-  //   expect(page.getHeadingH2InMyHeroDetail()).toEqual('Tornado details!');
-  // });
+  it('Verify change of hero name', () => {
+    page.navigateTo();
+    page.getHeroNameForSecondHeroInDashboard().then(heroName => {
+      console.log("Heroname: " + heroName);
+      page.clickSecondHeroInDashboard()
+        .then(() => {
+          page.printHeadingH2InMyHeroDetail();
+          expect(page.getHeadingH2InMyHeroDetail()).toEqual(heroName + ' details!');
+        })
+        .then(() => {
+          page.enterHeroName()
+        })
+        .then(() => {
+          page.printHeadingH2InMyHeroDetail();
+          expect(page.getHeadingH2InMyHeroDetail()).toEqual('Kalle details!');
+        })
+        .then(() => {
+          page.clickButtonSaveOfHeroDetails();
+          // .then(() => {
+          //   expect(page.getHeroNameForSecondHeroInDashboard()).toEqual('Kalle');
+        // })
+        // .then(() => {
+        //   // let str: string = 'Kalle';
+        //   expect(page.getHeroNameForSecondHeroInDashboard()).toEqual('Kalle');
+        });
+    });
+  });
+
 });
