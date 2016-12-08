@@ -1,6 +1,20 @@
 import { browser, element, by } from 'protractor';
+import { ILocation, ISize, promise as wdpromise, WebDriver, WebElement, WebElementPromise } from 'selenium-webdriver';
 
 export class HeroTutorialPage {
+  printHeroNameForSecondHeroInDashboard() {
+    this.getHeroNameForSecondHeroInDashboard()
+      .then(result => console.log(`Hero name for second hero in dashboard: ${result}`));
+  }
+  getHeroNameForSecondHeroInDashboard() {
+    return element(by.xpath('//a[2]/div/h4')).getText();
+  }
+  getHeroNameForSecondHeroInDashboardSlow(): wdpromise.Promise<string> {
+    return new wdpromise.Promise<string>(resolve =>
+      setTimeout(resolve, 5000)) // delay 5 seconds
+      .then(() => this.getHeroNameForSecondHeroInDashboard());
+  }
+
   navigateTo() {
     return browser.get('/');
   }
@@ -41,13 +55,18 @@ export class HeroTutorialPage {
     return element(by.linkText('Heroes')).click();
   }
 
-  printHeroNameForSecondHeroInDashboard() {
-    this.getHeroNameForSecondHeroInDashboard()
-      .then(result => console.log(`Hero name for second hero in dashboard: ${result}`));
-  }
-  getHeroNameForSecondHeroInDashboard() {
-    return element(by.xpath('//a[2]/div/h4')).getText();
-  }
+  // printHeroNameForSecondHeroInDashboard() {
+  //   this.getHeroNameForSecondHeroInDashboard()
+  //     .then(result => console.log(`Hero name for second hero in dashboard: ${result}`));
+  // }
+  // getHeroNameForSecondHeroInDashboard() {
+  //   return element(by.xpath('//a[2]/div/h4')).getText();
+  // }
+  // getHeroNameForSecondHeroInDashboardSlow(): PromiseLike<string> {
+  //   return new Promise<string>(resolve =>
+  //     setTimeout(resolve, 5000)) // delay 5 seconds
+  //     .then(() => this.getHeroNameForSecondHeroInDashboard());
+  // }
 
   clickSecondHeroInDashboard() {
     return element(by.xpath('//a[2]/div/h4')).click();
@@ -60,14 +79,19 @@ export class HeroTutorialPage {
     return element(by.css('my-hero-detail h2')).getText();
   }
 
-  enterHeroName() {
+  enterHeroName(heroName: string) {
     let idStr = by.xpath('//input');
     element(idStr).clear();
-    element(idStr).sendKeys('Kalle');    
+    element(idStr).sendKeys(heroName);
   }
 
   clickButtonSaveOfHeroDetails() {
-    element(by.xpath('//button[2]')).click();
+    // return element(by.xpath('//button[2]')).click();
+    return element(this.getXPath('at-save')).click();
+  }
+
+  getXPath(testId:string){
+    return by.xpath(`*//*[@test-id="${testId}"]`);
   }
 
   // getListOfHeroes() {
