@@ -54,6 +54,11 @@ export class HeroTutorialPage {
       setTimeout(resolve, 5000)) // delay 5 seconds
       .then(() => this.getHeroNameForSecondHeroInDashboard());
   }
+  isPresentHeroNameForSecondHeroInDashboard() {
+    browser.wait(() => {
+      return browser.element(by.xpath('//a[2]/div/h4')).isPresent()
+    }, 50 * 1000);
+  }
 
   clickSecondHeroInDashboard() {
     return element(by.xpath('//a[2]/div/h4')).click();
@@ -67,16 +72,18 @@ export class HeroTutorialPage {
   }
 
   enterHeroName(heroName: string) {
-    let idStr = by.xpath('//input');
-    element(idStr).clear();
-    element(idStr).sendKeys(heroName);
+    //let idStr = by.xpath('//input');
+    let idStr = this.getXPath('at-name');
+    return element(idStr).clear().then(() => {
+      element(idStr).sendKeys(heroName);
+    });
   }
 
   clickButtonSaveOfHeroDetails() {
     return element(this.getXPath('at-save')).click();
   }
 
-  getXPath(testId:string){
+  getXPath(testId: string) {
     return by.xpath(`*//*[@test-id="${testId}"]`);
   }
 
