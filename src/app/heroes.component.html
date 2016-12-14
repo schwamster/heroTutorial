@@ -1,4 +1,4 @@
-<h2>My Heroes</h2>
+<h2 test-id="at-h2-my-heroes">My Heroes</h2>
 <div>
   <label>Hero name:</label> <input #heroName />
   <button (click)="add(heroName.value); heroName.value=''">
@@ -13,8 +13,8 @@
   </li>
 </ul>
 <div *ngIf="selectedHero">
-  <h2>
+  <h2 test-id="at-h2-heroname">
     {{selectedHero.name | uppercase}} is my hero
   </h2>
-  <button (click)="gotoDetail()">View Details</button>
+  <button (click)="gotoDetail()" test-id="at-view-details">View Details</button>
 </div>

@@ -31,7 +31,19 @@ export class HeroTutorialPage {
     });
   }
   getHeadingH2InMyHeroes() {
-    return element(by.css('my-heroes h2')).getText();
+    // return element(by.css('my-heroes h2')).getText();
+    return element(this.getXPath('at-h2-my-heroes')).getText();
+  }
+
+  printHeadingH2InMyHeroesOneHeroName() {
+    return this.getHeadingH2InMyHeroesOneHeroName().then(result => {
+      console.log(`Heading h2 in my-heroes, second (/heros): ${result}`);
+      return result;
+    });
+  }
+  getHeadingH2InMyHeroesOneHeroName() {
+    // return element(by.css('my-heroes h2')).getText();
+    return element(this.getXPath('at-h2-heroname')).getText();
   }
 
   clickButtonDashboard() {
@@ -91,15 +103,19 @@ export class HeroTutorialPage {
   //   return [];
   // }
 
-  printOneHeroInList() {
+  printTextForHero10InList() {
     console.log('Print one hero in the list: ');
-    this.getTextForOneHero().then(result => console.log(result));
+    this.getTextForHero10InList().then(result => console.log(result));
   }
-  getTextForOneHero() {
-    return element(by.xpath('//li[10]')).getText();
+  getTextForHero10InList() {
+    return element(by.xpath('//li[10]/span[2]')).getText();
   }
-  clickHeroInList() {
-    return element(by.xpath('//li[10]')).click();
+  clickHero10InList() {
+    return element(by.xpath('//li[10]/span[2]')).click();
+  }
+
+  clickViewDetailsOnHeroPage() {
+    return element(by.xpath('//div[2]/button')).click();
   }
 
 }

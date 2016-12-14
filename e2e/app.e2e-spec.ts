@@ -20,7 +20,7 @@ describe('hero-tutorial App', function () {
     expect(page.getHeadingH3InMyDashboard()).toEqual('Top Heroes');
   });
 
-  it('Click second hero and verify hero details heading', () => {
+  it('Click second hero in page "Dashboard" and verify hero details heading', () => {
     page.getHeroNameForSecondHeroInDashboard().then(heroName => {
       page.clickSecondHeroInDashboard().then(() => {
         expect(page.getHeadingH2InMyHeroDetail()).toEqual(heroName + ' details!');
@@ -49,7 +49,7 @@ describe('hero-tutorial App', function () {
     });
   });
 
-  it('Verify change of hero name', () => {
+  it('Verify change of one hero name', () => {
     page.getHeroNameForSecondHeroInDashboard().then(heroName => {
       page.clickSecondHeroInDashboard().then(() => {
         expect(page.getHeadingH2InMyHeroDetail()).toEqual(heroName + ' details!');
@@ -60,6 +60,23 @@ describe('hero-tutorial App', function () {
           page.clickButtonSaveOfHeroDetails().then(() => {
             page.isPresentHeroNameForSecondHeroInDashboard();
             expect(page.getHeroNameForSecondHeroInDashboard()).toEqual('Kalle');
+          });
+        });
+      });
+    });
+  });
+
+  it('Verify hero details heading when naviagating via page "Heroes"', () => {
+    page.clickButtonHeroes().then(() => {
+      expect(page.getHeadingH2InMyHeroes()).toEqual('My Heroes');
+    }).then(() => {
+      page.getTextForHero10InList().then(heroName => {
+        page.clickHero10InList().then(() => {
+          expect(page.getTextForHero10InList()).toEqual(heroName);
+          expect(page.getHeadingH2InMyHeroesOneHeroName()).toEqual(heroName.toUpperCase() + ' is my hero');
+        }).then(() => {
+          page.clickViewDetailsOnHeroPage().then(() => {
+            expect(page.getHeadingH2InMyHeroDetail()).toEqual(heroName + ' details!');
           });
         });
       });
